@@ -1,0 +1,10 @@
+.moviesList {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .MuiToolbar-regular {
+    background: #75cfb8;
+  }
+  

@@ -1,72 +1,53 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import react, {useState  } from "react";
+import { Modal,Button, Form } from "react-bootstrap";
+import "./AddMovie.css";
+import m8 from "../../assets/m8.jpg";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+const AddMovie =({addMovie}) => {
+  const [show, setShow] = useState(false);
+  const [title, setTitle] = useState("")
+  const [raiting, setRaiting] = useState(0)
 
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
-export default function SimpleModal() {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <h4 id="simple-modal-title">Add a Movie name</h4>
-      <input></input>
-      <h4 id="simple-modal-title">Add a Movie Description</h4>
-      <input></input>
-
-      <SimpleModal />
-    </div>
-  );
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}> new movie
+    <>
+      <span className="Addbtn" variant="primary" onClick={handleShow}> [ + ]
         
-      </button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {body}
-      
+      </span>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add a movie</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        
+          <Form.Group>
+    <Form.Label>Title</Form.Label>
+    <Form.Control type="text" placeholder="Movie name" 
+    onChange={(e)=> setTitle(e.target.value)}/>
+      </Form.Group>
+      <Form.Group>
+    <Form.Label>Raiting</Form.Label>
+    <Form.Control type="number" placeholder="Movie raiting" min ="1" max ="5"
+    onChange={(e)=> setRaiting(e.target.value)}/>
+
+      </Form.Group>
+    
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={()=> {addMovie({id:Math.random(),title,img:m8,rating:raiting});handleClose()}}>
+            Add
+          </Button>
+        </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 }
+
+export default AddMovie

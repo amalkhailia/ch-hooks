@@ -1,7 +1,7 @@
 import react, {useState  } from "react";
 import { Modal,Button, Form } from "react-bootstrap";
 import "./AddMovie.css";
-import m8 from "../../assets/m8.jpg";
+import m9 from "../../assets/m9.jpg";
 
 
 const AddMovie =({addMovie}) => {
@@ -41,7 +41,7 @@ const AddMovie =({addMovie}) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={()=> {addMovie({id:Math.random(),title,img:m8,rating:raiting});handleClose()}}>
+          <Button variant="primary" onClick={()=> {addMovie({id:Math.random(),title,img:m9,rating:raiting});handleClose()}}>
             Add
           </Button>
         </Modal.Footer>

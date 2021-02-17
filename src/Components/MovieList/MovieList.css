@@ -2,10 +2,8 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding: 5%;
+    padding: 10%;
   }
   
-  .MuiToolbar-regular {
-    background: #75cfb8;
-  }
+  
   
